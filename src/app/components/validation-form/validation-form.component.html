@@ -1,0 +1,72 @@
+<div class="row " >
+  <div class="col-xl-12 col-sm-12" *ngIf="!noRegister">
+    <div class="p-4 ">
+      <div class="p-1">
+        <h3 class="h-title" *ngIf="!consultado">Buscar registro</h3>
+      </div>
+      <!-- Ingreso de documento -->
+      <form>
+        <div class="col">
+          <div class="d-flex" *ngIf="!consultado">
+            <mat-form-field appearance="fill">
+              <mat-label>Numero de documento</mat-label>
+              <input matInput placeholder="Ingresa tu numero de documento" [formControl]="idoc">
+              <mat-hint>Ten cuidado al ingresar tu numero de documento.</mat-hint>
+              <mat-error *ngIf="idoc.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex justify-content-center p-4" *ngIf="!consultado">
+            <button *ngIf="idoc.valid" type="button" class="btn btn-outline-yellow" (click)="buscarUsuario()">
+              Buscar
+            </button>
+          </div>
+          
+          <div class="d-flex" *ngIf="consultado">
+            <h2>Hola, {{userActual.nombres}} {{userActual.apellidos}}</h2>
+          </div>
+
+        </div>
+      </form>
+
+      <!-- List event - other components -->
+      <div class="container justify-content-center" *ngIf="userFinder">
+        <ng-container *ngIf="(asyncTabs | async) === null">
+          <div class="spinner-border text-warning " role="status">
+          </div>
+        </ng-container>
+
+        <mat-tab-group>
+          <mat-tab *ngFor="let tab of asyncTabs | async">
+            <ng-template mat-tab-label>{{tab.label}}</ng-template>
+
+            <div class="card mt-2" style="width:18rem" *ngFor="let evento of tab.events">
+              <div class="card-body">
+                <h3 class="card-title">
+                  {{evento.title}}
+                  <span class="badge badge-info">Fecha del evento: {{evento.endEvent}}</span>
+                </h3>
+
+                <h6 class="card-subtitle "></h6>
+                <button type="submit"  class="btn btn-outline-yellow" (click)="registrando(evento)">Asistir</button>
+              </div>
+            </div>
+
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+
+
+      <div class="d-flex justify-content-end p-2 mb-2" *ngIf="consultado">
+        <button *ngIf="idoc.valid" type="button" class="btn btn-outline-yellow" (click)="consultarOtro()"> Atras
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- No registrado , redireccion al registro -->
+  <div class="col-xl-12 col-sm-12" *ngIf="noRegister">
+    <app-register></app-register>
+  </div>
+</div>

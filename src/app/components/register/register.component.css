@@ -1,0 +1,59 @@
+.btn {
+  border-radius: 5px;
+  font-weight: 500;
+  border-width: 2px;
+}
+
+.btn-outline-yellow {
+  background-color: white;
+  border-color: #ffe500;
+
+}
+
+.btn-outline-yellow:hover {
+  background-color: #ffe500;
+  border-color: #ffe500;
+  color: black;
+  font-weight: 500;
+}
+
+.btn-outline-yellow:focus {
+  background-color: #ffe500;
+  border-color: #ffe500;
+
+}
+
+.btn[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.mat-step-header .mat-step-icon-selected{
+    background-color: #ffe500 !important;
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: #ffe500 !important;
+}
+ 
+.mat-step-header .mat-step-icon-selected .mat-step-header .mat-step-icon-state-done, 
+.mat-step-header .mat-step-icon-state-edit {
+    color: black !important;
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    color: black !important;
+}
+.mat-form-field.mat-focused .mat-form-field-label{
+    color:black !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: #ffe500 !important;
+}
+
+.mat-checkbox .mat-ripple-element{
+  background-color:#ffe500 !important;
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+  background-color:black !important;
+}

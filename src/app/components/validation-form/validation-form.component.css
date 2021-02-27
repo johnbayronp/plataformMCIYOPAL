@@ -1,0 +1,146 @@
+.row {
+  /** inset espaciados **/
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.h-title {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'roboto';
+}
+
+
+mat-form-field.mat-form-field {
+  width: 100%;
+}
+
+.btn {
+  border-radius: 5px;
+  font-weight: 500;
+  border-width: 2px;
+}
+
+.btn-outline-yellow {
+  background-color: white;
+  border-color: #ffe500;
+
+}
+
+.btn-outline-yellow:hover {
+  background-color: #ffe500;
+  border-color: #ffe500;
+  color: black;
+  font-weight: 500;
+}
+
+.btn-outline-yellow:focus {
+  background-color: #ffe500;
+  border-color: #ffe500;
+
+}
+
+
+/** tabs css **/
+.mat-tab-label {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: #828282;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: black;
+}
+
+/* Styles for the ink bar */
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #ffe500;
+}
+
+/** btn events **/
+
+.badge-info {
+  color:#ffffff;
+  background-color:black;
+  padding:6px;
+}
+
+
+@media only screen and (min-width: 800px) {
+
+  .scroll-direction-y {
+    height: 59%;
+    overflow-y: scroll;
+  }
+
+  .scroll-direction-y::-webkit-scrollbar {
+    width: 8px;
+    /* Tamaño del scroll en vertical */
+    height: 8px;
+    /* Tamaño del scroll en horizontal */
+    display: none;
+    /* Ocultar scroll */
+  }
+
+  /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+  .scroll-direction-y::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 4px;
+  }
+
+  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+  .scroll-direction-y::-webkit-scrollbar-thumb:hover {
+    background:#ffffff;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Cambiamos el fondo cuando esté en active */
+  .scroll-direction-y::-webkit-scrollbar-thumb:active {
+    background-color: #ffffff;
+  }
+
+  /* Ponemos un color de fondo y redondeamos las esquinas del track */
+  .scroll-direction-y::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 4px;
+  }
+
+  /* Cambiamos el fondo cuando esté en active o hover */
+  .scroll-direction-y::-webkit-scrollbar-track:hover,
+  .scroll-direction-y::-webkit-scrollbar-track:active {
+    background: #ffffff;
+  }
+
+
+  /*** Scroll bar for beautiful - table */
+  /* width */
+  .scroll-beautify::-webkit-scrollbar {
+    width: 20px;
+    height:4px;
+  }
+
+  /* Track */
+  .scroll-beautify::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 3px grey;  */
+    border-radius: 10px;
+    background-color: #e2e2e2;
+  }
+  
+  /* Handle */
+  .scroll-beautify::-webkit-scrollbar-thumb {
+    background: #ffe500; 
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  .scroll-beautify::-webkit-scrollbar-thumb:hover {
+    background: black; 
+  }
+
+
+}

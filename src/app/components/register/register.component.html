@@ -1,0 +1,163 @@
+<div>
+  <mat-horizontal-stepper linear >
+    <!-- Paso 1 - Registro datos - linear arriba-->
+    <mat-step [stepControl]="datosPersonales" label="Tus Datos" state="phone">
+      <form [formGroup]="datosPersonales">
+        <!-- Tipo de documento -->
+        <div class="row mt-2 ">
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo de documento</mat-label>
+            <mat-select formControlName="tipoDoc">
+              <mat-option *ngFor="let category of categoryDocuments" [value]="category.value">
+                {{category.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Numero de documento -->
+        <div class="row mt-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Numero de documento</mat-label>
+            <input matInput placeholder="Ingresa tu numero de documento" formControlName="idoc">
+            <mat-hint>Ten cuidado al ingresar tu numero de documento.</mat-hint>
+            <mat-error *ngIf="datosPersonales.controls">{{getErrorMessageDOC()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <!--nombres-->
+        <div class="row mt-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombres</mat-label>
+            <input matInput placeholder="Escriba aqui su nombre." formControlName="nombre">
+            <mat-hint>Ingresa tu nombre.</mat-hint>
+            <mat-error *ngIf="datosPersonales.controls">{{getErrorMessageName()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <!--apellidos-->
+
+        <div class="row mt-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Apellidos</mat-label>
+            <input matInput placeholder="Escriba aqui sus apellidos." formControlName="apellidos">
+            <mat-hint>Ingresa tus apellidos</mat-hint>
+            <mat-error *ngIf="datosPersonales.controls">{{getErrorMessageApellidos()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Numero Celular-->
+        <div class="row mt-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Numero celular</mat-label>
+            <input type="tel" matInput placeholder="ex. 318 000 00 00" formControlName="celular">
+            <mat-icon matSuffix>phone</mat-icon>
+
+            <mat-error *ngIf="datosPersonales.controls">{{getErrorMessagePhone()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Correo Electronico -->
+        <div class="row mt-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="Escriba su correo electronico." formControlName="email">
+            <mat-hint>ex.pepitoperez@correo.com.</mat-hint>
+            <mat-error *ngIf="datosPersonales.controls">{{getErrorMessageEmail()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Siguiente -->
+        <div class="row mt-4 justify-content-end">
+          <button matStepperNext type="button" class="btn btn-outline-yellow"
+            [disabled]="datosPersonales.status == 'INVALID'">
+            Siguiente
+          </button>
+        </div>
+
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="ministeriales" label="Informacion" state="chat" disableRipple="false" >
+      <form [formGroup]="ministeriales">
+        <!-- Numero Celular-->
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>Genero</mat-label>
+              <mat-select formControlName="genero">
+                <mat-option value="hombre">Hombre</mat-option>
+                <mat-option value="mujer">Mujer</mat-option>
+              </mat-select>
+              <mat-error *ngIf="ministeriales.controls">{{getErrorGenero()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>Edad</mat-label>
+              <input type="number" matInput maxlength="2" formControlName="edad">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error *ngIf="ministeriales.controls">{{getErrorEdad()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>Lideres de 12</mat-label>
+              <mat-select formControlName="lider">
+                <mat-option *ngFor="let lider of lider12" [value]="lider.value">
+                  {{lider.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="ministeriales.controls">{{getErrorLider()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <!-- back -->
+          <div class="justify-content-end">
+            <button matStepperPrevious type="button" class="btn btn-outline-yellow">
+              Atrás
+            </button>
+          </div>
+          <!-- Siguiente -->
+          <div class="col justify-content-end">
+            <button matStepperNext type="button" class="btn btn-outline-yellow"
+              (click)="verificarID()"
+              [disabled]="ministeriales.status == 'INVALID'">
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="terminos" label="Terminos y condiciones" [formGroup]="terminos">
+      <form [formGroup]="terminos">
+        <div class="row">
+          <app-message-policy></app-message-policy>
+        </div>
+        <div class="row">
+          <section class="example-section">
+            <mat-checkbox value="acepto" class="example-margin" formControlName="accept">Acepto tratamiento de datos y envio de información Misión Carismática Internacional
+            </mat-checkbox>
+          </section>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+          <button type="button" class="btn btn-outline-yellow"
+              [disabled]="!terminos.controls.accept.value" (click)="_onSubmit()">
+              Registrarme
+            </button>
+        </div>
+
+      </form>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>
+
+

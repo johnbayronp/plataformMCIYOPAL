@@ -1,0 +1,35 @@
+<div class="row mt-2 mb-3">
+    <h3 class="text-justify">
+      Agradecemos tu tiempo y esfuerzo al desarrollar el formulario, nuestro anhelo es poder estar juntos nuevamente. 
+      atraves de un mensaje en el correo electronico registrado recibira un mensaje de confirmacion de regitro</h3>
+</div>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title" id="modal-basic-title">Politicas de Datos</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-justify">
+    <p>
+      Las disposiciones contenidas en la presente política hacen referencia al
+      tratamiento de datos personales como intercambio, entrega, transferencia,
+      circulación, almacenamiento, uso, recolección y supresión de datos. Tenga
+      en cuenta que esta información se recolecta con el fin de acompañar a los
+      asistentes, miembros, personal administrativo y demás, en su proceso de
+      crecimiento espiritual, educación, desarrollo, inclusión en planes o
+      programas sociales, asuntos administrativos, divulgación de información
+      para eventos, información de productos o servicios de las empresas aliadas
+      que cuentan con recursos cristianos y en general con los fines relacionados
+      al objeto social de la Iglesia razón por la cual la privacidad de los mismos es
+      una prioridad para nosotros. <a target="_blank" href="https://mci12.com/politicasdedatos/">Leer Más</a>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Entendido</button>
+  </div>
+</ng-template>
+
+<div class="d-flex justify-content-end mb-2">
+  <button class="btn btn-outline-primary mb-2  justify-content-end" (click)="open(mymodal)">Politicas de datos</button>
+</div>
