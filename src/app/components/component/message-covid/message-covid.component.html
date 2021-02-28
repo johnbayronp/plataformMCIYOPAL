@@ -1,0 +1,70 @@
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title" id="modal-basic-title">Preguntas Sanidad COVID</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-justify">
+    <!--contenido preguntas -->
+    <div class="question1">
+      <p>
+        En los últimos 14 días ha tenido Ud, alguno de sus familiares o circulo de amigos mas cercanos contacto con
+        alguien diagnosticado con COVID-19? *
+      </p>
+
+      <div class="mb-2">
+        <mat-radio-group class="d-flex flex-column" >
+          <mat-radio-button class="example-margin" value="si">Si</mat-radio-button>
+          <mat-radio-button class="example-margin" value="no">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="question2">
+      <p>
+        En los últimos 14 dias ha sido diagnosticado Ud, alguno de sus familiares o circulo de amigos mas cercano como
+        sospechoso o positivo con COVID-19? *
+      </p>
+      <div class="mb-2">
+        <mat-radio-group class="d-flex flex-column">
+          <mat-radio-button class="example-margin" value="si">Si</mat-radio-button>
+          <mat-radio-button class="example-margin" value="no">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="question3">
+      <p>
+        Actualmente ha presentado Ud o familiares o circulo de amigos mas cercanos alguno de los siguientes síntomas? *
+      </p>
+
+      <section class="d-flex flex-column example-section">
+        <mat-checkbox value="acepto" class="example-margin">
+          Fiebre mayor a 38 grados
+        </mat-checkbox>
+        <mat-checkbox value="acepto" class="example-margin">
+          Dificultad para respirar
+        </mat-checkbox>
+        <mat-checkbox value="acepto" class="example-margin">
+          Síntomas gripales
+        </mat-checkbox>
+        <mat-checkbox value="acepto" class="example-margin">
+          Perdida del gusto u olfato
+        </mat-checkbox>
+        <mat-checkbox value="acepto" class="example-margin">
+          Ninguna de las anteriores
+        </mat-checkbox>
+      </section>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Registrado')">Registrarme a la
+      Reunion</button>
+  </div>
+</ng-template>
+
+<div class="d-flex justify-content-end mb-2">
+  <button class="btn btn-outline-primary mb-2  justify-content-end" (click)="open(mymodal)">Asistir</button>
+</div>

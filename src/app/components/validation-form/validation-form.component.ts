@@ -30,7 +30,11 @@ export class ValidationFormComponent implements OnInit {
                 title: 'Familiar Domingo 10 am',
                 dateInit: '05/02/2021',
                 endEvent: '12/02/2021',
-                cupos: 100,
+                cupos: 98,
+                asistentes: [
+                  '110874619',
+                  '912123123'
+                ],
               },
               {
                 idEvent: 2,
@@ -52,31 +56,7 @@ export class ValidationFormComponent implements OnInit {
                 cupos: 100,
               },
             ],
-          },
-          {
-            label: 'Universidad de la vida',
-            events: [
-              {
-                idEvent: 1,
-                title: 'Universidad de la vida',
-                dateInit: '02/02/2021',
-                endEvent: '30/02/2021',
-                cupos: 'infinitos',
-              },
-            ],
-          },
-          {
-            label: 'Seminarios',
-            events: [
-              {
-                idEvent: 1,
-                title: 'Seminario santificacion',
-                dateInit: '10/02/2021',
-                endEvent: '15/02/2021',
-                cupos: 'infinitos',
-              },
-            ],
-          },
+          }
         ]);
       }, 1000);
     });

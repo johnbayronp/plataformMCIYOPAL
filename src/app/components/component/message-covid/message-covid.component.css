@@ -1,0 +1,27 @@
+
+.btn-outline-primary {
+    color:#000 !important;
+    border-color: #000 !important;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(51, 55, 58, 0.596);
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #ffe500 !important;
+    border-color: black;
+}
+.btn-outline-primary:active {
+    color: #fff;
+    background-color: #ffe500;
+    border-color: black;
+}
+
+.btn .btn-outline-primary:focus {
+    box-shadow: 2 2 5 0.2rem #ffe500 !important;
+}
+.btn:focus {
+    box-shadow: 2 2 5 0.2rem #ffe500;
+}

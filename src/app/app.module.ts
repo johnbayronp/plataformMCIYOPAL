@@ -26,6 +26,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EndregisterComponent } from './pages/endregister/endregister.component';
+import { MessageCovidComponent } from './components/component/message-covid/message-covid.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { EndregisterComponent } from './pages/endregister/endregister.component'
     RegisterComponent,
     MessagePolicyComponent,
     AdministradorComponent,
-    EndregisterComponent
+    EndregisterComponent,
+    MessageCovidComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { EndregisterComponent } from './pages/endregister/endregister.component'
     MatSelectModule,
     MatCheckboxModule,
     NgbPaginationModule,
+    MatRadioModule,
     NgbAlertModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
