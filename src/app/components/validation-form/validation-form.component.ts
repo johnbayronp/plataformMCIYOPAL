@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { FormControl, Validators, Form } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
@@ -17,27 +17,25 @@ import { eventInterface } from 'src/app/models/event.model';
 })
 export class ValidationFormComponent implements OnInit {
   asyncTabs: eventInterface[];
-  
+  notEvent: boolean;
+
 
   constructor(private miembroService: MiembrosmciService, private eventos: EventosService) {
-
-  /* 
-    this.asyncTabs = new Observable((observer: Observer<eventInterface[]>) => {
-      setTimeout(() => {
-        observer.next(eventos);
-      }, 500);
-    }); */
+    
   }
 
   ngOnInit(): void {
+
+
     /*Consultar todos los eventos disponibles */
     let res = this.eventos.searchEventos();
 
     res.then(
       result => {
         if(!result){
-          return console.log('no hay eventos',result);
+          return this.notEvent = true;
         }
+        this.notEvent = false;
         return this.asyncTabs = result;
       }
     ).catch(

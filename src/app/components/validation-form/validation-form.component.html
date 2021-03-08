@@ -1,4 +1,4 @@
-<div class="row " >
+<div class="row ">
   <div class="col-xl-12 col-sm-12" *ngIf="!noRegister">
     <div class="p-4 ">
       <div class="p-1">
@@ -13,7 +13,7 @@
               <input matInput placeholder="Ingresa tu numero de documento" [formControl]="idoc">
               <mat-hint>Ten cuidado al ingresar tu numero de documento.</mat-hint>
               <mat-error *ngIf="idoc.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field> 
+            </mat-form-field>
           </div>
 
           <div class="d-flex justify-content-center p-4" *ngIf="!consultado">
@@ -21,7 +21,7 @@
               Buscar
             </button>
           </div>
-          
+
           <div class="d-flex" *ngIf="consultado">
             <h2>Hola, {{userActual.nombres}} {{userActual.apellidos}}</h2>
           </div>
@@ -31,8 +31,12 @@
 
       <!-- List event - other components -->
       <div class="container justify-content-center" *ngIf="userFinder">
-        <ng-container *ngIf="(asyncTabs) === null">
-          <div class="spinner-border text-warning " role="status">
+        
+        <ng-container *ngIf="notEvent">
+          <div class="d-flex flex-column ">
+            <img src="https://mci12.com/wp-content/uploads/2019/08/mci-logo.png"
+             alt="notfound" class="imgnotfound ">
+            <h2 class="justify-content-center"> No hay eventos disponibles</h2>
           </div>
         </ng-container>
 
@@ -40,18 +44,18 @@
           <mat-tab *ngFor="let tab of asyncTabs ">
             <ng-template mat-tab-label>{{tab.nombre}}</ng-template>
 
-            <div class="card mt-2" style="width:18rem"> <!-- *ngFor="let evento of tab.events"> -->
+            <div class="card mt-2" style="width:18rem">
+              <!-- *ngFor="let evento of tab.events"> -->
               <div class="card-body">
                 <h3 class="card-title">
                   {{tab.nombre}}
                   <span class="badge badge-info">Fecha del evento: {{tab.fecha}}</span>
                 </h3>
-                
-                <p> {{tab.id}}</p>
 
-                <h6 class="card-subtitle "> Recuerda, Solo puedes registrarte a una sola reunion luego no podras cambiar de reunion.</h6>
-                <app-message-covid></app-message-covid>
-                
+                <h6 class="card-subtitle "> Recuerda, Solo puedes registrarte a una sola reunion luego no podras cambiar
+                  de reunion.</h6>
+                <app-message-covid [asistente]="userActual" [eventoActual]="tab"></app-message-covid>
+
               </div>
             </div>
 
@@ -67,7 +71,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- No registrado , redireccion al registro -->
   <div class="col-xl-12 col-sm-12" *ngIf="noRegister">
     <app-register></app-register>

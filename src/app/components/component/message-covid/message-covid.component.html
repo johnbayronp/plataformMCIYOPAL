@@ -14,10 +14,12 @@
       </p>
 
       <div class="mb-2">
-        <mat-radio-group class="d-flex flex-column" >
-          <mat-radio-button class="example-margin" value="si">Si</mat-radio-button>
-          <mat-radio-button class="example-margin" value="no">No</mat-radio-button>
-        </mat-radio-group>
+        <form [formGroup]="covid1">
+          <mat-radio-group class="d-flex flex-column" formControlName="q1">
+            <mat-radio-button class="example-margin" value="true">Si</mat-radio-button>
+            <mat-radio-button class="example-margin" value="false">No</mat-radio-button>
+          </mat-radio-group>
+        </form>
       </div>
     </div>
 
@@ -27,10 +29,12 @@
         sospechoso o positivo con COVID-19? *
       </p>
       <div class="mb-2">
-        <mat-radio-group class="d-flex flex-column">
-          <mat-radio-button class="example-margin" value="si">Si</mat-radio-button>
-          <mat-radio-button class="example-margin" value="no">No</mat-radio-button>
-        </mat-radio-group>
+        <form [formGroup]="covid2">
+          <mat-radio-group class="d-flex flex-column" formControlName="q2">
+            <mat-radio-button class="example-margin" value="true">Si</mat-radio-button>
+            <mat-radio-button class="example-margin" value="false">No</mat-radio-button>
+          </mat-radio-group>
+        </form>
       </div>
     </div>
 
@@ -39,32 +43,42 @@
         Actualmente ha presentado Ud o familiares o circulo de amigos mas cercanos alguno de los siguientes síntomas? *
       </p>
 
-      <section class="d-flex flex-column example-section">
-        <mat-checkbox value="acepto" class="example-margin">
-          Fiebre mayor a 38 grados
-        </mat-checkbox>
-        <mat-checkbox value="acepto" class="example-margin">
-          Dificultad para respirar
-        </mat-checkbox>
-        <mat-checkbox value="acepto" class="example-margin">
-          Síntomas gripales
-        </mat-checkbox>
-        <mat-checkbox value="acepto" class="example-margin">
-          Perdida del gusto u olfato
-        </mat-checkbox>
-        <mat-checkbox value="acepto" class="example-margin">
-          Ninguna de las anteriores
-        </mat-checkbox>
-      </section>
+      <form [formGroup]="covid3">
+        <section class="d-flex flex-column example-section" >
+          <mat-checkbox [value]="true" class="example-margin" formControlName="q31">
+            Fiebre mayor a 38 grados
+          </mat-checkbox>
+          <mat-checkbox [value]="true" class="example-margin" formControlName="q32">
+            Dificultad para respirar
+          </mat-checkbox>
+          <mat-checkbox [value]="true" class="example-margin" formControlName="q33">
+            Síntomas gripales
+          </mat-checkbox>
+          <mat-checkbox [value]="true" class="example-margin" formControlName="q34">
+            Perdida del gusto u olfato
+          </mat-checkbox>
+          <mat-checkbox value="false" class="example-margin" formControlName="qfinal">
+            Ninguna de las anteriores
+          </mat-checkbox>
+        </section>
+      </form>
+
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Registrado')">Registrarme a la
-      Reunion</button>
+    <button type="button" class="btn btn-outline-dark"
+    [disabled]="this.covid1.status == 'INVALID' || 
+                this.covid2.status == 'INVALID' || 
+                this.covid3.status == 'INVALID'"
+    (click)="registro()">Registrarme a la Reunion</button>
   </div>
 </ng-template>
 
 <div class="d-flex justify-content-end mb-2">
-  <button class="btn btn-outline-primary mb-2  justify-content-end" (click)="open(mymodal)">Asistir</button>
+  <button class="btn btn-outline-primary mb-2 justify-content-end"
+  *ngIf="!registrado"
+  (click)="open(mymodal)">Asistir</button>
+
+  <p class="alert alert-warning" *ngIf="registrado">Estas registrado a este evento</p>
 </div>

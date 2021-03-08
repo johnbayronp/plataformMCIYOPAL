@@ -11,10 +11,12 @@ export interface MiembrosInterface {
     ministerio?: string;
     aceptotyc?: boolean;
     creado?: Date;
+    inscritos?:number;
 
     question1COVID?:boolean;
     question2COVID?:boolean;
     question3COVID?:boolean;
+    temperatura?:number;
 }
 
 

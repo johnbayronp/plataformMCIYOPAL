@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { v4 as uuidv4 } from 'uuid';
+import { MiembrosInterface } from '../models/miembros.model';
+import * as firebase from 'firebase/app';
+import { ContentObserver } from '@angular/cdk/observers';
+import { eventInterface } from '../models/event.model';
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,15 +20,16 @@ export class EventosService {
     for (let letter of fecha) {
       result += letter.replace('/', '');
     }
+    let id = uuidv4();
 
-    this.firestore.collection('eventos').doc().set({
+    this.firestore.collection('eventos').doc(`${id}`).set({
       asistentes: [],
       hora: hora,
       capacidad: cupo,
       fecha: fecha,
       nombre: nombre,
       vencido: false,
-      id: uuidv4(),
+      id:id
     });
   }
 
@@ -61,46 +67,54 @@ export class EventosService {
   }
 
   // Registrarme a un evento
-  asistirEvento(id) {
+  asistirEvento(id:string,asistente:MiembrosInterface,q1,q2,q3) {
+
+    let data =
+      {
+        nombres: asistente.nombres,
+        apellidos: asistente.apellidos,
+        celular: asistente.celular,
+        tipoDoc: asistente.tipoDoc,
+        docID: asistente.docID,
+        edad: asistente.edad,
+        genero: asistente.genero,
+        email: asistente.email,
+        ministerio: asistente.ministerio,
+        aceptotyc: asistente.aceptotyc,
+
+        question1COVID: q1,
+        question2COVID: q2,
+        question3COVID: q3,
+      };
     this.firestore
       .collection('eventos')
       .doc(id)
-      .set({
-        asistentes: [
-          {
-            nombres: 'Jhon bayron',
-            apellidos: 'Perez Suarez',
-            celular: '318482845',
-            tipoDoc: 'CC',
-            docID: '1102874619',
-            edad: '24',
-            genero: 'Hombre',
-            email: 'bayronperezs@outlook.es',
-            ministerio: 'Camilo&Paula',
-            aceptotyc: true,
-
-            question1COVID: true,
-            question2COVID: false,
-            question3COVID: true,
-          },
-          {
-            nombres: 'Johan',
-            apellidos: 'Centeno',
-            celular: '318482845',
-            tipoDoc: 'CC',
-            docID: '12345678',
-            edad: '31',
-            genero: 'Hombre',
-            email: 'correo@outlook.es',
-            ministerio: 'Camilo&Paula',
-            aceptotyc: true,
-
-            question1COVID: false,
-            question2COVID: false,
-            question3COVID: false,
-          },
-        ],
+      .update({
+        asistentes: firebase.default.firestore.FieldValue.arrayUnion(data),
+        inscritos: firebase.default.firestore.FieldValue.increment(1)
       });
-    console.log('inscrito');
+
+    console.log('inscrito... a la reunion con id:',id );
   }
+
+  //Consultar si esta registrado 
+  isRegister(e,asistente:MiembrosInterface) {
+    return this.firestore
+    .collection('eventos')
+    .doc(`${e.id}`)
+    .ref.get()
+    .then(res => {
+      let data:eventInterface = res.data();
+      return data.asistentes.find(x=>{
+        if(x.docID === asistente.docID){
+          return x.docID;
+        }
+        else{
+          return false;
+        }
+    })
+    });    
+  }
+
+
 }

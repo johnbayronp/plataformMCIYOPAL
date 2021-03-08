@@ -1,11 +1,20 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   NgbModal,
   ModalDismissReasons,
   NgbModalOptions,
+  NgbModalRef,
 } from '@ng-bootstrap/ng-bootstrap';
-
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { MiembrosInterface } from 'src/app/models/miembros.model';
+import {eventInterface} from 'src/app/models/event.model';
+import { EventosService } from 'src/app/services/eventos.service';
 
 @Component({
   selector: 'app-message-covid',
@@ -16,25 +25,59 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class MessageCovidComponent implements OnInit {
   labelPosition: 'si' | 'no' = 'no';
 
-  title = 'ng-bootstrap-modal-demo';
   closeResult: string;
   modalOptions: NgbModalOptions;
+  modal: NgbModalRef;
+  registrado:boolean;
+  
+  covid1: FormGroup;
+  covid2: FormGroup;
+  covid3: FormGroup;
+
+  @Input() asistente: MiembrosInterface;
+  @Input() eventoActual : eventInterface;
 
   constructor(
     private modalService: NgbModal,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private e:EventosService,
+    private _fb: FormBuilder
   ) {
     this.modalOptions = {
       backdrop: 'static',
       backdropClass: 'customBackdrop',
     };
+
+    (this.covid1 = this._fb.group({
+      q1: new FormControl('', [Validators.required]),
+    })),
+      (this.covid2 = this._fb.group({
+        q2: new FormControl('', [Validators.required]),
+      })),
+      (this.covid3 = this._fb.group({
+        q3: new FormControl(''),
+        q31: new FormControl(''),
+        q32: new FormControl(''),
+        q33: new FormControl(''),
+        q34: new FormControl(''),
+        qfinal: new FormControl('', [Validators.required]),
+      }));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.e.isRegister(this.eventoActual,this.asistente)
+    .then(res => {
+      if(res){
+        this.registrado = true;
+        return console.log('registrado al evento');
+      }
+  });
+  }
 
   open(content) {
-    this.modalService.open(content, this.modalOptions).result.then(
+    this.modal = this.modalService.open(content, this.modalOptions);
+    this.modal.result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;
       },
@@ -54,8 +97,17 @@ export class MessageCovidComponent implements OnInit {
     }
   }
 
-  registro(content) {
+  registro() {
+
+    this.e.asistirEvento(
+      this.eventoActual.id,
+      this.asistente,
+      this.covid1.value.q1,
+      this.covid2.value.q2,
+      this.covid3.value.qfinal
+    );
     
+    this.modal.close()
     this._router.navigate(['/registrado']);
   }
 }

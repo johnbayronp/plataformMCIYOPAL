@@ -9,7 +9,12 @@
   font-weight: 500;
   font-family: 'roboto';
 }
-
+.imgnotfound{
+  display:flex;
+  height: 300px;
+  width: 300px;
+  justify-content:center;
+}
 
 mat-form-field.mat-form-field {
   width: 100%;

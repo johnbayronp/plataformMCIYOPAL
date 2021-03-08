@@ -28,6 +28,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EndregisterComponent } from './pages/endregister/endregister.component';
 import { MessageCovidComponent } from './components/component/message-covid/message-covid.component';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -54,10 +55,12 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCheckboxModule,
     NgbPaginationModule,
     MatRadioModule,
+    MatTableModule,
     NgbAlertModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     routing
+    
   ],
   providers: [
     appRoutingProviders

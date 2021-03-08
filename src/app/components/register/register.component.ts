@@ -22,10 +22,10 @@ export class RegisterComponent implements OnInit {
   validateRegister: boolean;
 
   categoryDocuments: TypeDocumentos[] = [
-    { value: 'CC', viewValue: 'Cedula de Ciudadania' },
+    { value: 'CE', viewValue: 'Cedula Extranjera'},
     { value: 'TI', viewValue: 'Tarjeta de identidad' },
     { value: 'PP', viewValue: 'Pasaporte' },
-    { value: 'CE', viewValue: 'Cedula Extranjera'}  
+    { value: 'CC', viewValue: 'Cedula de Ciudadania' },
   ];
 
   lider12:Lideres[] = [
