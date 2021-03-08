@@ -24,11 +24,11 @@
 .title{
     padding:20px;
     text-align:center;
-    background-color: black;
+    background: url("../assets/images/Recurso.svg");
+    background-size: cover;
     color:white;
     border-bottom-left-radius:15px;
     border-bottom-right-radius:15px;
-
     margin-left:5%;
     margin-right: 5%;
 }
