@@ -90,6 +90,7 @@ export class RegisterComponent implements OnInit {
   
   _onSubmit(){
 
+    nombreSearch: new FormControl('', [Validators.required]),
     this.miembro.nombres = this.datosPersonales.controls.nombre.value;
     this.miembro.apellidos = this.datosPersonales.controls.apellidos.value;
     this.miembro.celular = this.datosPersonales.controls.celular.value;

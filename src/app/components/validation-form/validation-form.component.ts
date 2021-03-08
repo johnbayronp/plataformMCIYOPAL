@@ -4,11 +4,10 @@ import { ViewEncapsulation } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { MiembrosmciService } from 'src/app/services/miembrosmci.service';
 import { MiembrosInterface } from 'src/app/models/miembros.model';
+import { EventosService } from 'src/app/services/eventos.service';
+import { eventInterface } from 'src/app/models/event.model';
 
-export interface eventInterface {
-  label: string;
-  events: any[];
-}
+
 
 @Component({
   selector: 'app-validation-form',
@@ -17,52 +16,35 @@ export interface eventInterface {
   encapsulation: ViewEncapsulation.None,
 })
 export class ValidationFormComponent implements OnInit {
-  asyncTabs: Observable<eventInterface[]>;
-  constructor(private miembroService: MiembrosmciService) {
+  asyncTabs: eventInterface[];
+  
+
+  constructor(private miembroService: MiembrosmciService, private eventos: EventosService) {
+
+  /* 
     this.asyncTabs = new Observable((observer: Observer<eventInterface[]>) => {
       setTimeout(() => {
-        observer.next([
-          {
-            label: 'Reunion Familiar',
-            events: [
-              {
-                idEvent: 1,
-                title: 'Familiar Domingo 10 am',
-                dateInit: '05/02/2021',
-                endEvent: '12/02/2021',
-                cupos: 98,
-                asistentes: [
-                  '110874619',
-                  '912123123'
-                ],
-              },
-              {
-                idEvent: 2,
-                title: 'Familiar Domingo 8 am',
-                dateInit: '05/02/2021',
-                endEvent: '12/02/2021',
-                cupos: 100,
-              },
-            ],
-          },
-          {
-            label: 'Somos uno',
-            events: [
-              {
-                idEvent: 1,
-                title: 'Reunion Somos uno',
-                dateInit: '04/02/2021',
-                endEvent: '11/02/2021',
-                cupos: 100,
-              },
-            ],
-          }
-        ]);
-      }, 1000);
-    });
+        observer.next(eventos);
+      }, 500);
+    }); */
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    /*Consultar todos los eventos disponibles */
+    let res = this.eventos.searchEventos();
+
+    res.then(
+      result => {
+        if(!result){
+          return console.log('no hay eventos',result);
+        }
+        return this.asyncTabs = result;
+      }
+    ).catch(
+      err => console.log(err)
+    );
+
+  }
 
   userFinder: boolean = false;
   noRegister: boolean = false;

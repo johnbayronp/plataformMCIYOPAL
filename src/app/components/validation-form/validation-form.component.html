@@ -13,7 +13,7 @@
               <input matInput placeholder="Ingresa tu numero de documento" [formControl]="idoc">
               <mat-hint>Ten cuidado al ingresar tu numero de documento.</mat-hint>
               <mat-error *ngIf="idoc.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
+            </mat-form-field> 
           </div>
 
           <div class="d-flex justify-content-center p-4" *ngIf="!consultado">
@@ -31,21 +31,23 @@
 
       <!-- List event - other components -->
       <div class="container justify-content-center" *ngIf="userFinder">
-        <ng-container *ngIf="(asyncTabs | async) === null">
+        <ng-container *ngIf="(asyncTabs) === null">
           <div class="spinner-border text-warning " role="status">
           </div>
         </ng-container>
 
         <mat-tab-group>
-          <mat-tab *ngFor="let tab of asyncTabs | async">
-            <ng-template mat-tab-label>{{tab.label}}</ng-template>
+          <mat-tab *ngFor="let tab of asyncTabs ">
+            <ng-template mat-tab-label>{{tab.nombre}}</ng-template>
 
-            <div class="card mt-2" style="width:18rem" *ngFor="let evento of tab.events">
+            <div class="card mt-2" style="width:18rem"> <!-- *ngFor="let evento of tab.events"> -->
               <div class="card-body">
                 <h3 class="card-title">
-                  {{evento.title}}
-                  <span class="badge badge-info">Fecha del evento: {{evento.endEvent}}</span>
+                  {{tab.nombre}}
+                  <span class="badge badge-info">Fecha del evento: {{tab.fecha}}</span>
                 </h3>
+                
+                <p> {{tab.id}}</p>
 
                 <h6 class="card-subtitle "> Recuerda, Solo puedes registrarte a una sola reunion luego no podras cambiar de reunion.</h6>
                 <app-message-covid></app-message-covid>
