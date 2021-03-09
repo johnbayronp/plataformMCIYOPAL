@@ -29,21 +29,20 @@ export class RegisterComponent implements OnInit {
   ];
 
   lider12:Lideres[] = [
-    { value: 'NaN', viewValue: 'ES PRIMERA VEZ EN ASISTIR'},
-    { value: 'CAMILO & PAULA MURCIA', viewValue: 'CAMILO Y PAULA MURCIA'},
+    { value: 'PS. VICTOR & STELLA MURCIA', viewValue: 'PS. VICTOR & STELLA MURCIA'},
     { value: 'ALFONSO & ESTHER FRANCO', viewValue: 'ALFONSO & ESTHER FRANCO'},
+    { value: 'CAMILO & PAULA MURCIA', viewValue: 'CAMILO Y PAULA MURCIA'},
     { value: 'CARLOS & EDNA JULA', viewValue: 'CARLOS & EDNA JULA'},
     { value: 'CESAR & NATALIA LEGUIZAMO', viewValue: 'CESAR & NATALIA LEGUIZAMO'},
     { value: 'DIEGO & YAMILE ZAPATA', viewValue: 'DIEGO & YAMILE ZAPATA'},
+    { value: 'MANUEL & JOHANNA PATIÑO', viewValue: 'MANUEL & JOHANNA PATIÑO'},
+    { value: 'MERY SANCHEZ', viewValue: 'MERY SANCHEZ'},
     { value: 'LUIS C. & MARILENY APONTE', viewValue: 'LUIS C. & MARILENY APONTE'},
     { value: 'LUIS & ELIZA CASTILLO', viewValue: 'LUIS & ELIZA CASTILLO'},
-    { value: 'MANUEL & JOHANNA PATIÑO', viewValue: 'MANUEL & JOHANNA PATIÑO'},
     { value: 'OCTAVIO & LIVIA MEJIA', viewValue: 'OCTAVIO & LIVIA MEJIA'},
-    { value: 'MERY SANCHEZ', viewValue: 'MERY SANCHEZ'},
     { value: 'GEOVANNY BECERRA', viewValue: 'GEOVANNY BECERRA'},
     { value: 'WILLIAM CORREA', viewValue: 'WILLIAM CORREA'},
-    { value: 'PS. VICTOR & STELLA MURCIA', viewValue: 'PS. VICTOR & STELLA MURCIA'},
-    { value: 'NUEVO', viewValue: 'SOY NUEVO ASISTO PRIMERA VEZ'},
+    { value: 'NaN', viewValue: 'ES PRIMERA VEZ EN ASISTIR'},
     { value: 'OTROS', viewValue: 'OTROS'},
   ]
 
