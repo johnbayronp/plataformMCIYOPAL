@@ -83,7 +83,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   verificarID(){
-    console.log("verificando id...");
 
   }
   

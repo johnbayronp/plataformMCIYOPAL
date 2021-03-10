@@ -5,5 +5,6 @@ export interface eventInterface {
     fecha?:string;
     id?:string;
     capacidad?:number;
+    inscritos?:number;
     asistentes?: any[];
 }

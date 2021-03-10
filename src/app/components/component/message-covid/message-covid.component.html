@@ -44,7 +44,7 @@
       </p>
 
       <form [formGroup]="covid3">
-        <section class="d-flex flex-column example-section" >
+        <section class="d-flex flex-column example-section">
           <mat-checkbox [value]="true" class="example-margin" formControlName="q31">
             Fiebre mayor a 38 grados
           </mat-checkbox>
@@ -67,18 +67,19 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"
-    [disabled]="this.covid1.status == 'INVALID' || 
+    <button type="button" class="btn btn-outline-dark" [disabled]="this.covid1.status == 'INVALID' || 
                 this.covid2.status == 'INVALID' || 
-                this.covid3.status == 'INVALID'"
-    (click)="registro()">Registrarme a la Reunion</button>
+                this.covid3.status == 'INVALID'" (click)="registro()">Registrarme a la Reunion</button>
   </div>
 </ng-template>
 
 <div class="d-flex justify-content-end mb-2">
-  <button class="btn btn-outline-primary mb-2 justify-content-end"
-  *ngIf="!registrado"
-  (click)="open(mymodal)">Asistir</button>
+  <button class="btn btn-outline-primary mb-2 justify-content-end" *ngIf="!registrado && !cupo"
+    (click)="open(mymodal)">Asistir</button>
+  <div class= "d-flex flex-column">
+    <p class="alert alert-warning" *ngIf="registrado">Estas registrado a este evento</p>
+    <p class="alert alert-info" *ngIf="cupo">Nuestro aforo se ha completado,<strong>Te recomendamos revisar otro
+        horario.</strong></p>
 
-  <p class="alert alert-warning" *ngIf="registrado">Estas registrado a este evento</p>
+  </div>
 </div>

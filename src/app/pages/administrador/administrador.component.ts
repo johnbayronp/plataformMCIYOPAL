@@ -1,4 +1,3 @@
-import { DataSource } from '@angular/cdk/table';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -23,8 +22,8 @@ export class AdministradorComponent implements OnInit {
   temperatura: FormGroup;
   notEvent: boolean;
   eventsTabs: eventInterface[];
-  asistentes: MiembrosInterface[] = [];
-  dataSource = new MatTableDataSource(this.asistentes);
+  asistentes: MiembrosInterface[] =[];
+  dataSource:any;
 
   displayedColumns: string[] = [
     'cedula',
@@ -66,12 +65,24 @@ export class AdministradorComponent implements OnInit {
           return this.notEvent = true;
         }
         this.notEvent = false;
-        this.asistentes = result;
+
+        let array = result.map(res=> res["asistentes"]);
+
+        this.dataSource = new MatTableDataSource(array);
         return this.eventsTabs = result;
       }
     ).catch(
       err => console.log(err)
     );
+
+   
+    
+  }
+
+
+  exportxls(){
+    console.log('exportando excel')
+    // exportar hoja de asistentes
   }
 
   createNewEvent() {
@@ -88,11 +99,22 @@ export class AdministradorComponent implements OnInit {
   }
 
   searchEventNow() {
-    var evento = this.eService.searchAsistentes('zbBWnnyJQESO5Hc8FGay');
+   
+    let data = this.eService.searchEventos();
+    data.then(
+      result => {
+        if(!result){
+          return this.notEvent = true;
+        }
+        this.notEvent = false;
+        this.asistentes = result.map(res => res["asistentes"]);
+        return this.eventsTabs = result;
+      }
+    ).catch(
+      err => console.log(err)
+    );
 
-    evento
-      .then((res) => console.log(res))
-      .catch((error) => console.log('error'));
+    console.log('data',this.dataSource.data);
   }
 
   applyFilter(event: Event) {

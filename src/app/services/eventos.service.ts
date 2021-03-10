@@ -94,7 +94,6 @@ export class EventosService {
         inscritos: firebase.default.firestore.FieldValue.increment(1)
       });
 
-    console.log('inscrito... a la reunion con id:',id );
   }
 
   //Consultar si esta registrado 

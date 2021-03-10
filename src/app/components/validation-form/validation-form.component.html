@@ -44,13 +44,13 @@
           <mat-tab *ngFor="let tab of asyncTabs ">
             <ng-template mat-tab-label>{{tab.nombre}}</ng-template>
 
-            <div class="card mt-2" style="width:18rem">
+            <div class="card mt-2" style="width:100%">
               <!-- *ngFor="let evento of tab.events"> -->
-              <div class="card-body">
+              <div class="card-body ">
                 <h3 class="card-title">
                   {{tab.nombre}}
-                  <span class="badge badge-info">Fecha del evento: {{tab.fecha}}</span>
                 </h3>
+                <span class="badge badge-info">Fecha del evento: {{tab.fecha}}</span>
 
                 <h6 class="card-subtitle "> Recuerda, Solo puedes registrarte a una sola reunion luego no podras cambiar
                   de reunion.</h6>
@@ -65,7 +65,7 @@
 
 
 
-      <div class="d-flex justify-content-end p-2 mb-2" *ngIf="consultado">
+      <div class="d-flex justify-content-end p-2 mb-2 mr-2" *ngIf="consultado">
         <button *ngIf="idoc.valid" type="button" class="btn btn-outline-yellow" (click)="consultarOtro()"> Atras
         </button>
       </div>

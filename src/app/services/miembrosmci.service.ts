@@ -15,7 +15,6 @@ export class MiembrosmciService {
   createNewMember(miembro: MiembrosInterface) {
     this.firestore.collection('miembros').doc(`${miembro.docID}`).set(miembro);
 
-    console.log('Añadido a la base de datos');
   }
 
   // Consultar si el miembro esta registrado

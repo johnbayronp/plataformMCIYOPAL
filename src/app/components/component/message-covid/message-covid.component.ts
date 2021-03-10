@@ -29,6 +29,7 @@ export class MessageCovidComponent implements OnInit {
   modalOptions: NgbModalOptions;
   modal: NgbModalRef;
   registrado:boolean;
+  cupo:boolean;
   
   covid1: FormGroup;
   covid2: FormGroup;
@@ -66,11 +67,14 @@ export class MessageCovidComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.eventoActual.inscritos === this.eventoActual.capacidad){
+      this.cupo = true;
+    } 
     this.e.isRegister(this.eventoActual,this.asistente)
     .then(res => {
       if(res){
         this.registrado = true;
-        return console.log('registrado al evento');
+        return ;
       }
   });
   }
