@@ -130,7 +130,7 @@ export class AdministradorComponent implements OnInit {
         return this.eventsTabs = result;
       }
     ).catch(
-      err => console.log(err)
+      err => alert("contraseña incorrecta")
     );
 
     console.log('data',this.dataSource.data);
