@@ -8,14 +8,15 @@ import { SignupComponent } from './signup/signup.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { EndregisterComponent } from './pages/endregister/endregister.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AccesoService } from './services/acceso.service';
 
 // Array de Rutas
 const appRoutes: Routes = [
     { path: '', component: SignupComponent },
     { path: 'home', component: SignupComponent },
-    { path: 'administrador', component: AdministradorComponent},
+    { path: 'administrador', component: AdministradorComponent,canActivate: [AccesoService]},
     { path: 'registrado', component: EndregisterComponent},
-    { path: 'login', component: LoginComponent},
+    { path: 'login', component: LoginComponent, canActivate: [AccesoService]},
     { path: '**', component: SignupComponent }
 ];
 

@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
+
     this.authService.loginEmailUser(this.user.controls.correo.value,this.user.controls.password.value)
     .then((res)  => { // devuelve(then) una promesa((res))
       this.onLoginRedirect();

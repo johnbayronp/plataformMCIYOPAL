@@ -13,17 +13,22 @@ export class AuthService {
   loginEmailUser(email: string, pass: string) {
     return  new Promise((resolve, reject) => {
       this.afAuth.signInWithEmailAndPassword(email, pass)
-      .then(userData => resolve(console.log(userData)),
+      .then(userData => resolve(userData),
       err => reject(err));
     });
   }
 
   logout(){
-    return new Promise((resolve, reject) => {
-      this.afAuth.signOut()
-      .then(() => resolve(true))
-      .catch((err)=>reject(err));
-    })
+    return this.afAuth.signOut();
+  }
+
+  isAuth(){
+    return  new Promise((resolve, reject) => {
+      this.afAuth.authState.subscribe(
+        res=> resolve(res),
+        err=> reject(err)
+      );
+    });
   }
   
 }

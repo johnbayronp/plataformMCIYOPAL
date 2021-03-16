@@ -83,7 +83,6 @@ export class AdministradorComponent implements OnInit {
     );
 
    
-    
   }
 
 
@@ -98,7 +97,7 @@ export class AdministradorComponent implements OnInit {
   eliminarEvento(id:string){
     let res = confirm('Esta seguro que desea borrar este evento');
     if (res) {
-      this.eService.deleteEvent(id).then(()=>window.location.reload()).catch((err)=> alert("no se puedo eliminar"));
+      this.eService.deleteEvent(id).then(()=>this.router.navigate(['/administrador'])).catch((err)=> alert("no se puedo eliminar"));
     }
   }
 
@@ -113,7 +112,7 @@ export class AdministradorComponent implements OnInit {
       );
 
       this.createEvent.reset();
-      window.location.reload();
+      this.router.navigate(['/administrador']);
     }
   }
 
@@ -133,7 +132,6 @@ export class AdministradorComponent implements OnInit {
       err => alert("contraseña incorrecta")
     );
 
-    console.log('data',this.dataSource.data);
   }
 
   applyFilter(event: Event) {
@@ -142,7 +140,6 @@ export class AdministradorComponent implements OnInit {
   }
 
   update(asistente) {
-    console.log(asistente.docID, this.temperatura.value.temp );
   }
 
   onLoginRedirect(): void {
@@ -154,8 +151,7 @@ export class AdministradorComponent implements OnInit {
     let res = confirm('Desea cerrar sesión');
     if (res) {
       this.authS.logout()
-      .then(()=>this.onLoginRedirect())
-      .catch((err)=>err);
+      this.onLoginRedirect()
     }
   }
 }

@@ -10,6 +10,10 @@
     <mat-tab *ngFor="let tab of eventsTabs ">
       <ng-template mat-tab-label>{{tab.nombre}} </ng-template>
 
+      <h4>Aforo maximo: {{tab.capacidad}}</h4>
+      <h4>Numero de inscritos: {{tab.inscritos}}</h4>
+      <h4> Fecha del evento: {{tab.fecha}}</h4>
+
       <div class="card mt-2" >
         <!-- *ngFor="let evento of tab.events"> -->
         <div class="card-body">
