@@ -14,6 +14,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -31,8 +32,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
-    private _fb: FormBuilder /* 
-              private authService: AuthService, */,
+    private _fb: FormBuilder ,
+              private authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {
     this.user = this._fb.group({
@@ -53,13 +54,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    /* 
-    this.authService.loginEmailUser(this.email, this.password)
+    this.authService.loginEmailUser(this.user.controls.correo.value,this.user.controls.password.value)
     .then((res)  => { // devuelve(then) una promesa((res))
       this.onLoginRedirect();
     }).catch(err => {console.log('err: ', err.message); 
       this.notRegister = true; 
-    }); */
+    }); 
   }
 
 

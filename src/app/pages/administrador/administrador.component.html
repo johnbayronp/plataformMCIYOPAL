@@ -1,24 +1,27 @@
 <div class="d-flex flex-column justify-content-center">
 
-  <h2 class="pl-2"> Registrados </h2>
-
+  <div class="d-flex flex-row">
+    <h2 class="pl-2"> Registrados </h2>
+    <button class="btn btn-danger" (click)="logOut()" style="margin-left: 50%;">Cerrar Sesion</button>
+  </div>
+  
   <!-- TABLA REGISTRADOS-->
   <mat-tab-group>
     <mat-tab *ngFor="let tab of eventsTabs ">
-      <ng-template mat-tab-label>{{tab.nombre}}</ng-template>
+      <ng-template mat-tab-label>{{tab.nombre}} </ng-template>
 
       <div class="card mt-2" >
         <!-- *ngFor="let evento of tab.events"> -->
         <div class="card-body">
 
-          <!-- Buscar por cedula o nombre -->
+          <!-- Buscar por cedula o nombre --><!-- 
           <mat-form-field class="pl-4 pr-4">
             <mat-label> Buscar asistente </mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Ingrese el numero de cedula" #input>
           </mat-form-field>
-
+ -->
           <!-- Tabla de asistentes -->
-
+  
           <table mat-table [dataSource]="tab.asistentes" class="mat-elevation-z4" #tablaregistro>
 
             <!-- Cedula Column -->
@@ -73,7 +76,7 @@
               <td mat-cell *matCellDef="let element"> {{element.question3COVID == true ? 'NO' : 'SI' }} </td>
             </ng-container>
 
-            <!-- Temperatura-->
+<!--             
             <ng-container matColumnDef="Temperatura">
               <th mat-header-cell *matHeaderCellDef> Temperatura</th>
               <td mat-cell *matCellDef="let element">
@@ -84,29 +87,31 @@
                     (click)="update(element)">Actualizar</button>
                 </form>
               </td>
-            </ng-container>
+            </ng-container> -->
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
             <!-- Row shown when there is no matching data. -->
-            <tr class="mat-row" *matNoDataRow>
+            <!-- <tr class="mat-row" *matNoDataRow>
               <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-            </tr>
+            </tr> -->
           </table>
 
 
+          <div class="d-flex flex-column">
+            <button type="button" class="btn btn-success mt-4 " (click)="exportxls(tab.id)">Export Excel</button>
+            <button type="button" class="btn btn-outline-danger mt-4" (click)="eliminarEvento(tab.id)">eliminar evento</button>
+            
+          </div>
         </div>
       </div>
-
-      <button type="button" class="btn btn-success mt-4" (click)="exportxls(tab.id)">Export Excel</button>
 
     </mat-tab>
   </mat-tab-group>
 
 
-
-
+<hr>
   <h2 class="pl-2"> Crear Nuevo Evento</h2>
   <form class="d-flex flex-column p-4" [formGroup]="createEvent">
 

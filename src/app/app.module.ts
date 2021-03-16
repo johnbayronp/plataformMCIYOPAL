@@ -5,10 +5,11 @@ import {
   NgbAlertModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 // Cargar modulos exportados desde la app.routing.ts
 import { appRoutingProviders, routing } from './app.routing';
@@ -34,6 +35,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { LoginComponent } from './pages/login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     routing,
     MatFormFieldModule,
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, AngularFireAuth, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

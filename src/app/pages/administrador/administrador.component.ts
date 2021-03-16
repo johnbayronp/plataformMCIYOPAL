@@ -6,8 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { eventInterface } from 'src/app/models/event.model';
 import { MiembrosInterface } from 'src/app/models/miembros.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { EventosService } from 'src/app/services/eventos.service';
 import { ExcelService } from 'src/app/services/excel.service';
 
@@ -35,13 +37,14 @@ export class AdministradorComponent implements OnInit {
     'q1',
     'q2',
     'q3',
-    'Temperatura',
   ];
 
   constructor(
     private _fb: FormBuilder, 
     private eService: EventosService,
-    private excelService: ExcelService) {
+    private excelService: ExcelService,
+    private router: Router,
+    private authS: AuthService) {
     (this.createEvent = this._fb.group({
       eventName: new FormControl('', [Validators.required]),
       eventDate: new FormControl('', [Validators.required]),
@@ -92,6 +95,13 @@ export class AdministradorComponent implements OnInit {
     // exportar hoja de asistentes
   }
 
+  eliminarEvento(id:string){
+    let res = confirm('Esta seguro que desea borrar este evento');
+    if (res) {
+      this.eService.deleteEvent(id).then(()=>window.location.reload()).catch((err)=> alert("no se puedo eliminar"));
+    }
+  }
+
   createNewEvent() {
     let res = confirm('Desea crear el evento');
     if (res) {
@@ -101,7 +111,9 @@ export class AdministradorComponent implements OnInit {
         this.createEvent.value.eventDate,
         this.createEvent.value.eventHora
       );
+
       this.createEvent.reset();
+      window.location.reload();
     }
   }
 
@@ -131,5 +143,19 @@ export class AdministradorComponent implements OnInit {
 
   update(asistente) {
     console.log(asistente.docID, this.temperatura.value.temp );
+  }
+
+  onLoginRedirect(): void {
+    this.router.navigate(['/login']);
+  }
+
+  logOut(){
+    
+    let res = confirm('Desea cerrar sesión');
+    if (res) {
+      this.authS.logout()
+      .then(()=>this.onLoginRedirect())
+      .catch((err)=>err);
+    }
   }
 }

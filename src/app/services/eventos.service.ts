@@ -114,6 +114,15 @@ export class EventosService {
     })
     });    
   }
-
+  //eliminareventos
+  deleteEvent(id:string){
+    
+    let eventos = this.firestore.collection('eventos');
+    return eventos
+      .doc(`${id}`)
+      .delete().then(()=> 
+      console.log('borrando evento,',`${id}`)
+      ).catch((err)=>console.log(err));
+  }
 
 }
