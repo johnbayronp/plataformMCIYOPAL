@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { EndregisterComponent } from './pages/endregister/endregister.component';
+import { LoginComponent } from './pages/login/login.component';
 
 // Array de Rutas
 const appRoutes: Routes = [
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
     { path: 'home', component: SignupComponent },
     { path: 'administrador', component: AdministradorComponent},
     { path: 'registrado', component: EndregisterComponent},
+    { path: 'login', component: LoginComponent},
     { path: '**', component: SignupComponent }
 ];
 

@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center  text-center">
+
+  <form [formGroup]="user"  class=" mt-4" style="width:17rem;" >
+    <div class="space-up2"></div>
+    <img class="mb-4"
+      src="data:image/png;base64,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"
+      alt="" width="72" height="72" style="border-radius: 50%;">
+    <h1 class="h3 mb-3 font-weight-normal">Administrador</h1>
+
+    <!--Email Entrada-->
+    <div class=" mb-2">
+      <mat-form-field appearance="fill">
+        <mat-label>Correo</mat-label>
+        <input matInput placeholder="Escriba su correo electronico." formControlName="correo">
+        <mat-hint>ex.pepitoperez@correo.com.</mat-hint>
+        <span matSuffix>
+            <mat-icon class="ml-2">email</mat-icon>
+        </span>
+      </mat-form-field>
+    </div>
+
+    <!--Password Entrada-->
+    <div class=" mb-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Introduce tu contraseña </mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button> 
+      </mat-form-field>
+    </div>
+
+
+    <!-- button Entrada - loguearse -->
+    <button type="button" class="mb-4 btn btn-outline-yellow" (click)="onLogin()">
+        Iniciar Sesion
+    </button>
+
+    <a routerLink="/signup" class="btn return">Regresar al portal de eventos</a>
+    <hr>
+
+    <p class="mt-5 mb-3 text-muted spaceado">&copy; Developers MCI Yopal </p>
+    <p class="space-above"></p>
+    <br>
+  </form>
+</div>

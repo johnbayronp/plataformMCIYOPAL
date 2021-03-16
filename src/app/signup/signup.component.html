@@ -4,16 +4,20 @@
     </div>
     <div class="container-right scroll-direction-y">
       <div class="subtitle">
-
         <div class="title">
-            <h1 class="header"></h1>
+          <h1 class="header"></h1>
         </div>
-        
+
         <h3 class="des">Formulario registro reuniones MCI Yopal</h3>
       </div>
       <router-outlet name="registroUser"></router-outlet>
       <app-validation-form class="ng-star-inserted"></app-validation-form>
+
+      <div class="d-flex flex-row justify-content-center" style="margin-top:136px">
+        <a (click)="pageLogin()" class=" link"> Acceso al Administrador </a>
+      </div>
     </div>
+
   </div>
 </div>
 

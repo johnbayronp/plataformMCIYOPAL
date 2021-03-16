@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { eventInterface } from 'src/app/models/event.model';
 import { MiembrosInterface } from 'src/app/models/miembros.model';
 import { EventosService } from 'src/app/services/eventos.service';
+import { ExcelService } from 'src/app/services/excel.service';
 
 
 @Component({
@@ -37,7 +38,10 @@ export class AdministradorComponent implements OnInit {
     'Temperatura',
   ];
 
-  constructor(private _fb: FormBuilder, private eService: EventosService) {
+  constructor(
+    private _fb: FormBuilder, 
+    private eService: EventosService,
+    private excelService: ExcelService) {
     (this.createEvent = this._fb.group({
       eventName: new FormControl('', [Validators.required]),
       eventDate: new FormControl('', [Validators.required]),
@@ -80,8 +84,11 @@ export class AdministradorComponent implements OnInit {
   }
 
 
-  exportxls(){
-    console.log('exportando excel')
+  exportxls(id):void{
+    let listado:any[];
+    this.eService.searchAsistentes(id).then(res => {
+      this.excelService.exportAsExcelFile(res['asistentes'],'asistencia')
+    });
     // exportar hoja de asistentes
   }
 

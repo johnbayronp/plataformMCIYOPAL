@@ -1,4 +1,5 @@
 
+
 .container-general{
     height: 100vh;
     overflow:auto;
@@ -48,6 +49,13 @@
     margin-top: 3vh;
     height: 10vh;
     font-weight: 500;
+}
+
+.link{
+    color: #3e3e3e;
+    text-decoration: none;
+    font-style: italic;
+    background-color: transparent;
 }
 
 @media only screen and (max-width: 800px){
