@@ -52,9 +52,10 @@
 }
 
 .link{
-    color: #3e3e3e;
+    color:#7d7d7d;
     text-decoration: none;
     font-style: italic;
+    font-size: 12px;
     background-color: transparent;
 }
 
