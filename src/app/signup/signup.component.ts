@@ -9,12 +9,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   constructor(
-    private _route: ActivatedRoute, private router: Router) { }
+    private _route: ActivatedRoute, private _router: Router) { }
   ngOnInit(): void {
   }
   
   pageLogin(){
-    this.router.navigate(['/login']);
+    this._router.navigate(['/login']);
   }
 
 }
