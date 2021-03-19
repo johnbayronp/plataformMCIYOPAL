@@ -14,7 +14,7 @@ import { AuthService } from './auth.service';
 export class AccesoService {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot) {
 
     return this.authService.isAuth()
     .then(res => { 

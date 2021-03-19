@@ -15,6 +15,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { AccesoService } from 'src/app/services/acceso.service';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
+    private acceso: AccesoService,
     private _fb: FormBuilder ,
               private authService: AuthService,
     private activatedRoute: ActivatedRoute
@@ -43,10 +45,19 @@ export class LoginComponent implements OnInit {
       ]),
     })
 
+
+    this.islogged();
   }
 
   ngOnInit() {
     this.notRegister = false;
+  }
+
+  islogged(){
+    this.acceso.canActivate().then(() => {
+      console.log('logeado redireccionar')
+      this.router.navigate(['/administrador']);
+    })
   }
 
   onLoginRedirect(): void {
