@@ -40,12 +40,12 @@
           </div>
         </ng-container>
 
-        <mat-tab-group>
+        <!--<mat-tab-group>
           <mat-tab *ngFor="let tab of asyncTabs ">
             <ng-template mat-tab-label>{{tab.nombre}}</ng-template>
 
-            <div class="card mt-2" style="width:100%">
-              <!-- *ngFor="let evento of tab.events"> -->
+            <div class="card mt-2" style="width:100%">-->
+              <!-- *ngFor="let evento of tab.events"> --><!--
               <div class="card-body ">
                 <h3 class="card-title">
                   {{tab.nombre}}
@@ -61,6 +61,24 @@
 
           </mat-tab>
         </mat-tab-group>
+-->
+        <div class="row">
+          <div class="col ">
+            <div class="card mb-4" *ngFor="let event of asyncTabs">
+              <div class="card-body">
+                <h2 class="card-title">{{event.nombre}}</h2>
+
+                <span class="badge badge-info">Fecha del evento: {{event.fecha}}</span>
+
+                <h6 class="card-subtitle "> Recuerda, Solo puedes registrarte a una sola reunion luego no podras cambiar
+                  de reunion.</h6>
+
+                <app-message-covid [asistente]="userActual" [eventoActual]="event"></app-message-covid>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
