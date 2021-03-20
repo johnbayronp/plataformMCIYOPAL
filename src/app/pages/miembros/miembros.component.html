@@ -5,6 +5,7 @@
 <table class="table">
     <thead>
       <tr>
+        <th scope="col">Tipo Doc</th>
         <th scope="col"># Cedula</th>
         <th scope="col">Nombre</th>
         <th scope="col">Apellidos</th>
@@ -15,6 +16,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let miembro of miembros">
+        <th scope="row">{{miembro.tipoDoc}}</th>
         <th scope="row">{{miembro.docID}}</th>
         <th scope="col">{{miembro.nombres}}</th>
         <th scope="col">{{miembro.apellidos}}</th>
