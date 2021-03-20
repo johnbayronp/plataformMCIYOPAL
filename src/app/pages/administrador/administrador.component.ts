@@ -146,6 +146,10 @@ export class AdministradorComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  irRegistrados(){
+    this.router.navigate(['/registrados/miembros']);
+  }
+
   logOut(){
     
     let res = confirm('Desea cerrar sesión');

@@ -36,6 +36,17 @@ export class MiembrosmciService {
   // Consultar el miembro para validar el registro
 
   // Consultar todos los miembros
+  allMembers(){
+
+    const docRef = this.firestore.collection('miembros');
+
+    return docRef.ref
+    .get()
+    .then((data) => 
+      data.docs.map(res=>res.data())
+    )
+    .catch((err)=>console.log('error',err));
+  }
 
   // Consultar miembros por lider
 
