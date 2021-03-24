@@ -10,6 +10,7 @@ import { EndregisterComponent } from './pages/endregister/endregister.component'
 import { LoginComponent } from './pages/login/login.component';
 import { AccesoService } from './services/acceso.service';
 import { MiembrosComponent } from './pages/miembros/miembros.component';
+import { EventosComponent } from './pages/eventos/eventos.component';
 
 // Array de Rutas
 const appRoutes: Routes = [
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     { path: 'registrado', component: EndregisterComponent},
     { path: 'login', component: LoginComponent},
     { path: 'registrados/miembros', component: MiembrosComponent},
+    { path: 'eventos/:id', component: EventosComponent},
     { path: '**', component: SignupComponent }
 ];
 

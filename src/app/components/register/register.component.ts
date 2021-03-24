@@ -42,8 +42,7 @@ export class RegisterComponent implements OnInit {
     { value: 'OCTAVIO & LIVIA MEJIA', viewValue: 'OCTAVIO & LIVIA MEJIA'},
     { value: 'GEOVANNY BECERRA', viewValue: 'GEOVANNY BECERRA'},
     { value: 'WILLIAM CORREA', viewValue: 'WILLIAM CORREA'},
-    { value: 'NaN', viewValue: 'ES PRIMERA VEZ EN ASISTIR'},
-    { value: 'OTROS', viewValue: 'OTROS'},
+    { value: 'NaN', viewValue: 'ES PRIMERA VEZ EN ASISTIR'}
   ]
 
   constructor(
@@ -102,7 +101,7 @@ export class RegisterComponent implements OnInit {
 
     this.miembroService.createNewMember(this.miembro);
 
-    this._router.navigate(['/registrado']);
+    this._router.navigate(['eventos',`${this.miembro.docID}`]);
   }
 
 

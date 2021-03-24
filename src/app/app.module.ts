@@ -37,6 +37,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AuthService } from './services/auth.service';
 import { MiembrosComponent } from './pages/miembros/miembros.component';
+import { EventosComponent } from './pages/eventos/eventos.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MiembrosComponent } from './pages/miembros/miembros.component';
     MessageCovidComponent,
     LoginComponent,
     MiembrosComponent,
+    EventosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, Validators, Form } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
@@ -6,8 +6,7 @@ import { MiembrosmciService } from 'src/app/services/miembrosmci.service';
 import { MiembrosInterface } from 'src/app/models/miembros.model';
 import { EventosService } from 'src/app/services/eventos.service';
 import { eventInterface } from 'src/app/models/event.model';
-
-
+import { createNumericLiteral } from 'typescript';
 
 @Component({
   selector: 'app-validation-form',
@@ -19,29 +18,29 @@ export class ValidationFormComponent implements OnInit {
   asyncTabs: eventInterface[];
   notEvent: boolean;
 
+  @Input() userAsistir: string;
 
-  constructor(private miembroService: MiembrosmciService, private eventos: EventosService) {
-    
-  }
+  constructor(
+    private miembroService: MiembrosmciService,
+    private eventos: EventosService
+  ) {}
 
   ngOnInit(): void {
-
+    /* Consultar si viene redireccionado del registro final*/
+    this.searchRedireccion(this.userAsistir);
 
     /*Consultar todos los eventos disponibles */
     let res = this.eventos.searchEventos();
 
-    res.then(
-      result => {
-        if(!result){
-          return this.notEvent = true;
+    res
+      .then((result) => {
+        if (!result) {
+          return (this.notEvent = true);
         }
         this.notEvent = false;
-        return this.asyncTabs = result;
-      }
-    ).catch(
-      err => console.log(err)
-    );
-
+        return (this.asyncTabs = result);
+      })
+      .catch((err) => console.log(err));
   }
 
   userFinder: boolean = false;
@@ -49,7 +48,7 @@ export class ValidationFormComponent implements OnInit {
   consultado: boolean = false;
 
   /** Usuario encontrado */
-  userActual : MiembrosInterface;
+  userActual: MiembrosInterface;
 
   idoc = new FormControl('', [
     Validators.required,
@@ -72,22 +71,41 @@ export class ValidationFormComponent implements OnInit {
       ? 'Debes ingresar un documento valido.'
       : '';
   }
+  /** redireccion */
+  searchRedireccion(user?: string){
+    if (user) {
+      console.log('redireccion');
+      var data = this.miembroService.verifyID(user);
 
+      data.then((response) => {
+        if (response === false) {
+          this.noRegister = true;
+          this.userFinder = false;
+        } else {
+          /* 
+          this.find.push(response); */
+          this.userActual = response;
+          this.userFinder = true;
+          this.noRegister = false;
+          this.consultado = true;
+        }
+      });
+    }
+  }
   /**Buscar el usuario */
   buscarUsuario() {
     var data = this.miembroService.verifyID(this.idoc.value);
-
-
     data.then((response) => {
       if (response === false) {
         this.noRegister = true;
         this.userFinder = false;
-      } else {/* 
-        this.find.push(response); */
+      } else {
+        /* 
+          this.find.push(response); */
         this.userActual = response;
         this.userFinder = true;
         this.noRegister = false;
-        this.consultado = true; 
+        this.consultado = true;
       }
     });
   }
