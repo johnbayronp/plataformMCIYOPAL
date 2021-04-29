@@ -67,8 +67,7 @@ export class EventosService {
   }
 
   // Registrarme a un evento
-  asistirEvento(id:string,asistente:MiembrosInterface,q1,q2,q3) {
-
+  asistirEvento(id:string,asistente:MiembrosInterface,q1,q2,q3,t:number) {
     let data =
       {
         nombres: asistente.nombres,
@@ -85,6 +84,7 @@ export class EventosService {
         question1COVID: q1,
         question2COVID: q2,
         question3COVID: q3,
+        temperatura: t,
       };
     this.firestore
       .collection('eventos')

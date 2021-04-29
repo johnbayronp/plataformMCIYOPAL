@@ -6,6 +6,17 @@
     </button>
   </div>
   <div class="modal-body text-justify">
+
+
+    <div class="temperatura">
+      <form [formGroup]="temperaturaccess">
+        <mat-form-field appearance="fill">
+          <mat-label>Temperatura</mat-label>
+          <input matInput type="number" maxlength="4" placeholder="°C" formControlName="temperature">
+        </mat-form-field>
+      </form>
+    </div>
+
     <!--contenido preguntas -->
     <div class="question1">
       <p>
@@ -22,6 +33,7 @@
         </form>
       </div>
     </div>
+
 
     <div class="question2">
       <p>
@@ -67,9 +79,11 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" [disabled]="this.covid1.status == 'INVALID' || 
+    <button type="button" class="btn btn-outline-dark" 
+    [disabled]="this.covid1.status == 'INVALID' || 
                 this.covid2.status == 'INVALID' || 
-                this.covid3.status == 'INVALID'" (click)="registro()">Registrarme a la Reunion</button>
+                this.covid3.status == 'INVALID' || 
+                this.temperaturaccess.status == 'INVALID' " (click)="registro()">Registrarme a la Reunion</button>
   </div>
 </ng-template>
 

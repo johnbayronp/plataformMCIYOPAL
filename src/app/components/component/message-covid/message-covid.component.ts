@@ -34,6 +34,7 @@ export class MessageCovidComponent implements OnInit {
   covid1: FormGroup;
   covid2: FormGroup;
   covid3: FormGroup;
+  temperaturaccess: FormGroup;
 
   @Input() asistente: MiembrosInterface;
   @Input() eventoActual : eventInterface;
@@ -62,7 +63,10 @@ export class MessageCovidComponent implements OnInit {
         q32: new FormControl(''),
         q33: new FormControl(''),
         q34: new FormControl(''),
-        qfinal: new FormControl('', [Validators.required]),
+        qfinal: new FormControl('', [Validators.required]), 
+      })),
+      (this.temperaturaccess = this._fb.group({
+        temperature: new FormControl('', [Validators.required]),
       }));
   }
 
@@ -108,7 +112,8 @@ export class MessageCovidComponent implements OnInit {
       this.asistente,
       this.covid1.value.q1,
       this.covid2.value.q2,
-      this.covid3.value.qfinal
+      this.covid3.value.qfinal,
+      this.temperaturaccess.value.temperature,
     );
     
     this.modal.close()

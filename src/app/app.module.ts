@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ValidationFormComponent } from './components/validation-form/validation-form.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';

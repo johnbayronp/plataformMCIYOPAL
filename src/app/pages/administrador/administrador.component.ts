@@ -34,6 +34,7 @@ export class AdministradorComponent implements OnInit {
     'apellidos',
     'ministerio',
     'correo',
+    'temperatura',
     'q1',
     'q2',
     'q3',
