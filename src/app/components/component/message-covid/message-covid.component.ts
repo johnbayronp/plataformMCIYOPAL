@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MiembrosInterface } from 'src/app/models/miembros.model';
-import {eventInterface} from 'src/app/models/event.model';
+import { eventInterface } from 'src/app/models/event.model';
 import { EventosService } from 'src/app/services/eventos.service';
 
 @Component({
@@ -28,22 +28,22 @@ export class MessageCovidComponent implements OnInit {
   closeResult: string;
   modalOptions: NgbModalOptions;
   modal: NgbModalRef;
-  registrado:boolean;
-  cupo:boolean;
-  
+  registrado: boolean;
+  cupo: boolean;
+
   covid1: FormGroup;
   covid2: FormGroup;
   covid3: FormGroup;
   temperaturaccess: FormGroup;
 
   @Input() asistente: MiembrosInterface;
-  @Input() eventoActual : eventInterface;
+  @Input() eventoActual: eventInterface;
 
   constructor(
     private modalService: NgbModal,
     private _route: ActivatedRoute,
     private _router: Router,
-    private e:EventosService,
+    private e: EventosService,
     private _fb: FormBuilder
   ) {
     this.modalOptions = {
@@ -63,24 +63,23 @@ export class MessageCovidComponent implements OnInit {
         q32: new FormControl(''),
         q33: new FormControl(''),
         q34: new FormControl(''),
-        qfinal: new FormControl('', [Validators.required]), 
+        qfinal: new FormControl('', [Validators.required]),
       })),
       (this.temperaturaccess = this._fb.group({
-        temperature: new FormControl('', [Validators.required]),
+        temperature: new FormControl(''),
       }));
   }
 
   ngOnInit(): void {
-    if(this.eventoActual.inscritos === this.eventoActual.capacidad){
+    if (this.eventoActual.inscritos === this.eventoActual.capacidad) {
       this.cupo = true;
-    } 
-    this.e.isRegister(this.eventoActual,this.asistente)
-    .then(res => {
-      if(res){
+    }
+    this.e.isRegister(this.eventoActual, this.asistente).then((res) => {
+      if (res) {
         this.registrado = true;
-        return ;
+        return;
       }
-  });
+    });
   }
 
   open(content) {
@@ -106,17 +105,16 @@ export class MessageCovidComponent implements OnInit {
   }
 
   registro() {
-
     this.e.asistirEvento(
       this.eventoActual.id,
       this.asistente,
       this.covid1.value.q1,
       this.covid2.value.q2,
       this.covid3.value.qfinal,
-      this.temperaturaccess.value.temperature,
+      this.temperaturaccess.value.temperature
     );
-    
-    this.modal.close()
+
+    this.modal.close();
     this._router.navigate(['/registrado']);
   }
 }

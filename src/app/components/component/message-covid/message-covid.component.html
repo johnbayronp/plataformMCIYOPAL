@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body text-justify">
 
-
+    <!-- ocultado
     <div class="temperatura">
       <form [formGroup]="temperaturaccess">
         <mat-form-field appearance="fill">
@@ -15,7 +15,7 @@
           <input matInput type="number" maxlength="4" placeholder="°C" formControlName="temperature">
         </mat-form-field>
       </form>
-    </div>
+    </div> -->
 
     <!--contenido preguntas -->
     <div class="question1">
@@ -79,18 +79,17 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" 
-    [disabled]="this.covid1.status == 'INVALID' || 
+    <button type="button" class="btn btn-outline-dark" [disabled]="this.covid1.status == 'INVALID' || 
                 this.covid2.status == 'INVALID' || 
-                this.covid3.status == 'INVALID' || 
-                this.temperaturaccess.status == 'INVALID' " (click)="registro()">Registrarme a la Reunion</button>
+                this.covid3.status == 'INVALID'" (click)="registro()">Registrarme a la Reunion</button>
+    <!-- this.temperaturaccess.status == 'INVALID' -->
   </div>
 </ng-template>
 
 <div class="d-flex justify-content-end mb-2">
   <button class="btn btn-outline-primary mb-2 justify-content-end" *ngIf="!registrado && !cupo"
     (click)="open(mymodal)">Asistir</button>
-  <div class= "d-flex flex-column">
+  <div class="d-flex flex-column">
     <p class="alert alert-warning" *ngIf="registrado">Estas registrado a este evento</p>
     <p class="alert alert-info" *ngIf="cupo">Nuestro aforo se ha completado,<strong>Te recomendamos revisar otro
         horario.</strong></p>
